@@ -2,3 +2,6 @@ data/*
 lighyning_logs/*
 lightning_logs/
 metrics/*
+bfg-1.14.0.jar
+.vscode/*
+*/__pycache__/*
