@@ -1,3 +1,4 @@
 data/*
 lighyning_logs/*
 lightning_logs/
+metrics/*
