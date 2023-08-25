@@ -6,24 +6,25 @@ settings_config = {
 
 model_config = {
     'model_name': 'Full_DIP',
-    'num_layers': 3,#tune.grid_search([3]),#tune.grid_search([3]),
+    'num_layers': 4,#tune.grid_search([3]),#tune.grid_search([3]),
     'num_channels': 'exponential',#tune.grid_search(['exponential','equal']),
     'upsampling_mode': 'bilinear',#'bilinear',#tune.grid_search(['deconv','gaussian']),
     'ln_lambda': 0,#tune.grid_search([0,1,2,3]),
     'sigma': 0,#tune.grid_search([0.1,0.5]),
-    'sigma_p': 1,#tune.grid_search([1]),
+    'sigma_p': 0,# tune.grid_search([0.1,0.5,1]),
     'init': '0',#tune.grid_search(['kaiming_uniform','kaiming_norm','xavier_norm','xavier_uniform']),
+    'skip': 4,#tune.grid_search([0,1,2,3]),
 }
 
 # Configuration dictionnary for hyperparameters to tune
 hyperparameters_config = {
     "lr" : 0.01, # Learning rate in network optimization
-    "iters" : 1000, # Number of epochs in network optimization
+    "iters" : 800, # Number of epochs in network optimization
 }
 # Merge 3 dictionaries
 split_config = {
     "hyperparameters" : list(hyperparameters_config.keys()),
-    "repeat" : tune.grid_search(list(range(5))),
+    "repeat" : 1,#tune.grid_search(list(range(50))),
 }
 
 

@@ -13,8 +13,8 @@ class MeanOnlyBatchNorm(nn.Module):
 
     def forward(self, inp):
         size = list(inp.size())
-        beta = self.bias.view(1, self.num_features, 1, 1)
-        avg = torch.mean(inp.view(size[0], self.num_features, -1), dim=2)
+        beta = self.bias.view(1, self.num_features, 1, 1) 
+        avg = torch.mean(inp.view(size[0], self.num_features, -1), dim=(0,2,3)) 
 
         output = inp - avg.view(size[0], size[1], 1, 1)
         output = output + beta

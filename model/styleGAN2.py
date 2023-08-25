@@ -45,9 +45,13 @@ class Generator(nn.Module):
         
         self.initial_constant = nn.Parameter(torch.randn((1, features[0], 4, 4)))
         
+        self.style_block = StyleBlock(d_latent, features[0], features[0])
         
+        blocks = [GeneratorBlock(d_latent, features[i - 1], features[i]) for i in range(1, self.n_blocks)]
         
+        self.blocks = nn.ModuleList(blocks)
         
+        self.up_sample = UpSample()
         
-        
-        
+    
+    def forward(self, w: torch.Tensor, input_noise: List[Tuple[Optional[torch.Tensor], Optional[torch.Tensor]]]):
